@@ -22,10 +22,6 @@ def calculate(input) -> int:
   if type(input) is list:
     if len(input) == 1:
       return calculate(input[0])
-    if len(input) != 3:
-      print(f"Error: Expected array of length 3 but received length={len(input)}")
-      print(f"Error input: {input}")
-      raise ValueError(f"Given input does not meet the standardized requirements: {input}")
 
     method = input[0]
 
