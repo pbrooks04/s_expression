@@ -1,10 +1,15 @@
 import sys
 from pyparsing import nestedExpr
 
-def convert_expression_to_list(input) -> str | int:
+def convert_expression_to_list(input) -> list | int:
   """ Take a given string that satisfies a basic S Expression and convert it
   into a list that is nested as defined by the input.
 
+  :param input: str
+  :return: list | int
+
+  >>> convert_expression_to_list("(add 1 2)")
+  [['add', '1', '2']]
   >>> convert_expression_to_list("(add (multiply 1 3) (add (multiply 4 2) (multiply 4 5)))")
   [['add', ['multiply', '1', '3'], ['add', ['multiply', '4', '2'], ['multiply', '4', '5']]]]
   """
@@ -16,8 +21,27 @@ def convert_expression_to_list(input) -> str | int:
 
 def calculate(input) -> int:
   """ Evaluates the given list of the S expression
+
+  :param input: str
+  :return: int
+
+  Addition
+  >>> calculate([['add', '1', '2']])
+  3
+  >>> calculate([['add', '1', '2', '3']])
+  6
+
+  Multiplication
+  >>> calculate([['multiply', '2', '3']])
+  6
+  >>> calculate([['multiply', '2', '3', '4']])
+  24
+
+  Combination of Addition and Multiplication
   >>> calculate([['add', ['multiply', '1', '3'], ['add', ['multiply', '4', '2'], ['multiply', '4', '5']]]])
   31
+  >>> calculate([['add', ['multiply', '1', '3', '2'], ['add', ['multiply', '4', '2'], ['multiply', '4', '5'], '2', '4']]])
+  40
   """
   if type(input) is list:
     if len(input) == 1:
@@ -40,7 +64,6 @@ def calculate(input) -> int:
       return value
 
   return int(input)
-
 
 if __name__ == "__main__":
   input = sys.argv[1]
