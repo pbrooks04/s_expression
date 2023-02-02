@@ -1,7 +1,7 @@
 # Simple S Expression Calculator
 
 This script is able to calculate simple nested S Expressions https://en.wikipedia.org/wiki/S-expression.
-It is dependant on the `pyparsing` library.
+**It is dependant on the `pyparsing` library.**
 
 The calculator accepts only two operations at this time, `add` and `multiply` but can easily be expanded to support other operations such as `exponent`.
 
